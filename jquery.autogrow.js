@@ -16,9 +16,7 @@
  */
  
 (function(jQuery) {
-		  
-	var self = null;
- 
+
 	jQuery.fn.autogrow = function(o)
 	{	
 		return this.each(function() {
@@ -75,7 +73,8 @@
 		},
 		
 		stopExpand: function() {
-			clearInterval(this.interval);	
+			clearInterval(this.interval);
+			this.dummy.remove();	
 		},
 		
 		checkExpand: function() {
