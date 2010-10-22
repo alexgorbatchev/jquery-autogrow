@@ -43,6 +43,7 @@
 		this.line_height	  	= this.options.lineHeight || parseInt(jQuery(e).css('line-height'));
 		this.min_height		  	= this.options.minHeight || parseInt(jQuery(e).css('min-height'));
 		this.max_height		  	= this.options.maxHeight || parseInt(jQuery(e).css('max-height'));;
+		this.expand_callback		= this.options.expandCallback;
 		this.textarea		  	= jQuery(e);
 		
 		if(this.line_height == NaN)
@@ -99,7 +100,7 @@
 			var html = this.textarea.val().replace(/(<|>)/g, '');
 			
 			// IE is different, as per usual
-			if ($.browser.msie)
+			if (jQuery.browser.msie)
 			{
 				html = html.replace(/\n/g, '<BR>new');
 			}
@@ -124,6 +125,11 @@
 						this.textarea.animate({height: (this.dummy.height() + this.line_height) + 'px'}, 100);	
 					}
 				}
+			}
+			
+			if (this.expand_callback) {
+				var self = this;
+				window.setTimeout(function(){self.expand_callback()},500);
 			}
 		}
 						 
